@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <h1>This is password reset page</h1>
+    <h1> <%=  resetToken   %>  </h1> -->
+
+    <form action="">
+        <label for="">Enter new Password</label>
+        <input id="password" type="password">
+        <label for="">Confirm Password</label>
+        <input id="cpassword" type="password">
+        <button onclick="handleSubmit(event)">Change Password</button>
+    </form>
+
+
+
+    <script>
+
+
+        let resetToken = '<%=  resetToken   %>'
+        let passwordTag = document.querySelector('#password')
+        let cpasswordTag = document.querySelector('#cpassword')
+
+        console.log(resetToken)
+
+        async function handleSubmit(e){
+            e.preventDefault()
+            let obj = {
+                password:passwordTag.value,
+                cpassword : cpasswordTag.value
+            }
+
+            console.log(obj)
+            if(obj.password!==obj.cpassword){
+                return alert('password does not match')
+            }
+
+            let res = await fetch(`http://localhost:6677/user/updatePassword/${resetToken}`,{
+                method:"PUT",
+                headers:{
+                    'content-type':'application/json'
+                },
+                body:JSON.stringify(obj)
+            })
+
+            let data = await res.json();
+            console.log(data)
+            alert(data.msg)
+        }
+
+    </script>
+
+</body>
+</html>
