@@ -141,7 +141,7 @@ export default function PostCard(props) {
         >
           <Avatar
             size="md"
-            src={obj.userId.profilePic}
+           src={obj?.userId?.profilePic}
             sx={{ border: '2px solid', borderColor: 'background.body' }}
           />
         </Box>
@@ -160,7 +160,7 @@ export default function PostCard(props) {
 
       
         {
-          obj.files.map((file,i)=>{
+           obj?.files?.map((file, i) => {
                 return file.includes('image') ? <img src={file} alt="" /> : <video controls src={file}></video>
             })
         }
@@ -176,7 +176,7 @@ export default function PostCard(props) {
       <CardContent orientation="horizontal" sx={{ alignItems: 'center', mx: -1 }}>
         <Box sx={{ width: 0, display: 'flex', gap: 0.5 }}>
              {
-            obj.likes.includes(userSlice.user._id) ?    <IconButton onClick={likeOrDislikePost} variant="plain" color="neutral" size="sm">
+            obj?.likes?.includes(userSlice?.user?._id) ?    <IconButton onClick={likeOrDislikePost} variant="plain" color="neutral" size="sm">
             <FaHeart color='red' size={22}/>
           </IconButton>
 

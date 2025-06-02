@@ -56,11 +56,17 @@ const loginUser = async(req,res)=>{
             return res.status(401).json({msg:"incorrect password"})
         }
     }
-    else{
-        res.status(401).json({msg:"user not found please signup"})
-    }
+  }
 
 
+const getLoggedInUSer = async(req,res)=>{
+   try {
+     const {_id} = req.user;
+    let user = await userCollection.findById(_id).select('-password');
+    res.status(200).json({user})
+   } catch (error) {
+    res.status(500).json({error:error.message})
+   }
 }
 
 
@@ -229,5 +235,6 @@ export  {
     updatePassword,
     searchFriend,
     getFriend,
-    followUnfollowUser
+    followUnfollowUser,
+    getLoggedInUSer
 }

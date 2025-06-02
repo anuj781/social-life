@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { FaCamera } from "react-icons/fa6";
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { updatePic } from '../redux/userSlice';
+import { fetchUserByToken } from '../redux/userSlice';
 import { useState } from 'react';
 import PostCard from '../components/PostCard';
 const UserProfile = () => {
@@ -35,7 +35,7 @@ const UserProfile = () => {
        let data1 = res1.data;
        console.log(data1)
        if(res1.status==200){
-          dispatch(updatePic({name,url}))
+            dispatch(fetchUserByToken(userSlice?.token))
        }
          
           
@@ -60,7 +60,7 @@ const UserProfile = () => {
   return (
     <div className='container w-[90%] m-auto'>
         <div className='w-full h-[50vh] relative'>
-            <img src={user.coverPic} className='w-full h-full object-cover' alt="" />
+            <img src={user?.coverPic} className='w-full h-full object-cover' alt="" />
 
             <div className='absolute bottom-3 right-6'>
                 <label htmlFor="profile" > <FaCamera size={30} color='white'/></label>
@@ -68,8 +68,8 @@ const UserProfile = () => {
             </div>
 
             <div className='w-[200px] bottom-[0%] left-[5%] translate-y-[50%] h-[200px] rounded-full absolute bg-green-500'>
-               <img className='w-full h-full rounded-full object-cover' src={user.profilePic} alt="" /> 
-               <p className='text-center text-xl font-semibold'>{user.name}</p>
+               <img className='w-full h-full rounded-full object-cover' src={user?.profilePic} alt="" /> 
+               <p className='text-center text-xl font-semibold'>{userSlice?.user?.name}</p>
 
                <div className='absolute top-0 right-6'>
                 <label htmlFor="cover" > <FaCamera size={30} color='white'/></label>
@@ -81,11 +81,11 @@ const UserProfile = () => {
              <div className='flex justify-center items-center gap-10 mt-5'>
           <div className="box flex flex-col justify-center items-center text-xl">
             <h3 className='font-semibold'>Followers</h3>
-            <p>0</p>
+             <p>{userSlice?.user?.followers?.length}</p>
           </div>
            <div className="box flex flex-col justify-center items-center text-xl">
             <h3 className='font-semibold'>Followings</h3>
-           <p>0</p>
+           <p>{userSlice?.user?.followings?.length}</p>
           </div>
         </div>
           <div className="flex w-[400px] m-auto mt-[180px] flex-col gap-2">

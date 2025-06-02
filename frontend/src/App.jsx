@@ -1,14 +1,15 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import Nav from "./components/Nav"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import { ToastContainer } from "react-toastify"
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Forget from "./pages/Forget"
 import UserProfile from "./pages/UserProfile"
 import FriendProfile from "./pages/FriendProfile"
+import { fetchUserByToken } from './redux/userSlice'
 
 
 
@@ -16,6 +17,14 @@ function App() {
   let userSlice = useSelector((state)=>state.users);
   console.log(userSlice)
   let login = userSlice.login  // false
+  let dispatch = useDispatch()
+
+  useEffect(()=>{
+   if(userSlice.token){
+     dispatch(fetchUserByToken(userSlice.token))
+   }
+  },[userSlice.token])
+
   return (
     <div>
       <BrowserRouter>
