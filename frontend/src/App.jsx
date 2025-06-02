@@ -10,6 +10,7 @@ import Forget from "./pages/Forget"
 import UserProfile from "./pages/UserProfile"
 import FriendProfile from "./pages/FriendProfile"
 import { fetchUserByToken } from './redux/userSlice'
+import Chat from './pages/Chat'
 
 
 
@@ -39,6 +40,7 @@ function App() {
       <Route path='/userProfile' element={login===true ? <UserProfile/> : <Navigate to={'/login'}/>}/>
       <Route path='/forget' element={<Forget/>}/>
       <Route path='/friendProfile' element={login===true ?<FriendProfile/> : <Navigate to={'/login'}/>}/>
+      <Route path='/chat' element={login===true ?<Chat/> : <Navigate to={'/login'}/>}/>
       </Routes>
       <ToastContainer/>
       </BrowserRouter>

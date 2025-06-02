@@ -20,6 +20,8 @@ import userRoute from './routes/userRoute.js'
 app.use('/user',userRoute)
 import postRoute from './routes/postRoute.js'
 app.use('/post',postRoute)
+import messageRoutes from './routes/messageRoutes.js'
+app.use('/messages', messageRoutes)
 
 app.listen(port,()=>{
     console.log(`server is running on http://localhost:${port}`)

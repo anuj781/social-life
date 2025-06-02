@@ -26,7 +26,7 @@ userSchema.add({
     },
      profilePic:{
         type:String,
-        default:"https://www.transparentpng.com/download/user/gray-user-profile-icon-png-fP8Q1P.png"
+          default:"https://img.freepik.com/vecteurs-premium/icones-utilisateur-comprend-icones-utilisateur-symboles-icones-personnes-elements-conception-graphique-qualite-superieure_981536-526.jpg?semt=ais_items_boosted&w=740https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgsaRe2zqH_BBicvUorUseeTaE4kxPL2FmOQ&s"
     },
 
     coverPic:{
