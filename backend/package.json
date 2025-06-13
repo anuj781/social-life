@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node dist/server.js",
+  "build": "rimraf dist && mkdir dist && cp server.js dist/ && cp -r views dist/ && cp -r config dist/ && cp -r public dist/"
+}
   },
   "type": "module",
   "keywords": [],
